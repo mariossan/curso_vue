@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" name="nombre" placeholder="Nombre" v-model='nombre'>
+		<p>Tu nombre en mayuscula es: {{ nombre | uppercase }}</p>
+
+		<form @submit.prevent='submit' action="" method="get">
+			<h2>Cuales son tus cursos favoritos?</h2>
+			<input v-model='cursos' name="cursos" type="checkbox" id='vue' value="vue">
+			<label for="vue">Curso de vue.js</label>
+			<br>
+			<input v-model='cursos' name="cursos" type="checkbox" id='seo' value="seo">
+			<label for="seo">Curso de seo</label>
+			<br>
+			<input v-model='cursos' name="cursos" type="checkbox" id='react' value="react">
+			<label for="react">Curso de react.js</label>
+			<br>
+			<input v-model='cursos' name="cursos" type="checkbox" id='growth' value="growth">
+			<label for="growth">Curso de growth marketing</label>
+			<br>
+			<button type="submit">Enviar</button>
+		</form>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		let app = new Vue({
+			el: '#app',
+			data: {
+				nombre: '',
+				cursos: []
+			},
+			filters: {
+				uppercase(str) {
+					return str.toUpperCase();
+				}
+			},
+			methods: {
+				submit() {
+					console.log('se ejecuta el metodo submit')
+					console.log(this.cursos)
+				}
+			}
+		}); 
+	</script>
+</body>
+</html>

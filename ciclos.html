@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" name="nombre" placeholder="Nombre" v-model='nombre'>
+		
+
+		<form @submit.prevent='submit' action="" method="get">
+			<h2>Cuales son tus cursos favoritos?</h2>
+			
+			<template v-for='curso in cursos'>
+				<input v-model='cursosSeleccionados' name="cursos" type="checkbox" :id='curso.value' :value="curso.value">
+				<label :for="curso.value">Curso de {{ curso.nombre }}</label>
+				<br>	
+			</template>
+			
+			<button type="submit">Enviar</button>
+		</form>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		let app = new Vue({
+			el: '#app',
+			data: {
+				nombre: '',
+				cursos: [
+					{	'nombre': 'curso  de introduccion de vueJs', 'value': 'vue'  },
+					{	'nombre': 'curso  de seo', 'value': 'seo'  },
+					{	'nombre': 'curso  de ReactJs', 'value': 'react'  },
+					{	'nombre': 'curso de growth', 'value': 'growth'  },
+
+				],
+				cursosSeleccionados: []
+			},
+			methods: {
+				submit() {
+					console.log('se ejecuta el metodo submit')
+					console.log(this.cursosSeleccionados)
+				}
+			}
+		}); 
+	</script>
+</body>
+</html>
